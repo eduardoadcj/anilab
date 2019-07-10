@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Novo anime</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">Título</ion-label>
+    <ion-input [(ngModel)]="anime.titulo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Autor</ion-label>
+    <ion-input [(ngModel)]="anime.autor"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Demografia</ion-label>
+    <ion-select [(ngModel)]="anime.demografia" value="shonen" okText="Definir" cancelText="Fechar">
+      <ion-select-option value="shonen">Shonen</ion-select-option>
+      <ion-select-option value="seinen">Seinen</ion-select-option>
+      <ion-select-option value="shojo">Shojo</ion-select-option>
+      <ion-select-option value="josei">Josei</ion-select-option>
+      <ion-select-option value="kodomo">Kodomo</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Sinopse</ion-label>
+    <ion-textarea [(ngModel)]="anime.sinopse"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="full" shape="round" color="medium" (click)="salvar()">Adicionar</ion-button>
+
+</ion-content>
