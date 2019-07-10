@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'form-anime', loadChildren: './anime/form-anime/form-anime.module#FormAnimePageModule' },
   { path: 'list-anime', loadChildren: './anime/list-anime/list-anime.module#ListAnimePageModule' },
+  { path: 'view-anime', loadChildren: './anime/view-anime/view-anime.module#ViewAnimePageModule' },
 ];
 
 @NgModule({
