@@ -18,8 +18,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   imports: [
      BrowserModule,
      IonicModule.forRoot(),
-     AppRoutingModule
-     AngularFireModule.inicializeApp({
+     AppRoutingModule,
+     AngularFireModule.initializeApp({
        apiKey: "AIzaSyCPmEZMaLKI_iLp4yYj09AgfBz2hnAdSL8",
        authDomain: "anilab-c5e5a.firebaseapp.com",
        databaseURL: "https://anilab-c5e5a.firebaseio.com",
