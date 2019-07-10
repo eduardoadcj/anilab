@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
+
+import { Anime } from '../../model/anime';
 
 @Component({
   selector: 'app-view-anime',
@@ -8,12 +12,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewAnimePage implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  key: string;
+  anime: Observable<any>;
+
+  constructor(private route: ActivatedRoute, private fire: AngularFireDatabase) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe( params => {
       if(params['key']){
-        console.log(params['key']);
+        this.key = params['key'];
+        this.anime = this.fire.object('anime/'+this.key).valueChanges();
       }
     });
   }
