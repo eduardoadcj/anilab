@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>list-anime</ion-title>
+    <ion-title>Anilab</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+      <ion-card *ngFor="let anime of listAnime | async">
 
+        <ion-card-header>
+          <ion-card-title>{{anime.titulo}}</ion-card-title>
+          <ion-card-subtitle>{{anime.autor}}</ion-card-subtitle>
+          <ion-card-subtitle>{{anime.demografia}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{anime.sinopse}}
+          <ion-button expand="full" shape="round" fill="outline" color="medium">Visualizar</ion-button>
+        </ion-card-content>
+
+      </ion-card>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { map } from 'rxjs/operators';
+
+import { Anime } from '../../model/anime';
 
 @Component({
   selector: 'app-list-anime',
@@ -7,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListAnimePage implements OnInit {
 
-  constructor() { }
+  listAnime: Observable<Anime[]>;
+
+  constructor(private fire: AngularFireDatabase) {
+    this.listAnime = this.fire.list<Anime>('anime').snapshotChanges().pipe(
+      map( lista => lista.map( linha => ({key: linha.payload.key, ... linha.payload.val() }) ) )
+    );
+  }
 
   ngOnInit() {
   }
