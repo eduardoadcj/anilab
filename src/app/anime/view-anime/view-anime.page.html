@@ -23,10 +23,10 @@
       <ion-list-header>
         <ion-label>Comentários</ion-label>
       </ion-list-header>
-      <ion-item>
+      <ion-item *ngFor="let message of listMessage | async">
         <ion-label>
-            <h2>Nome</h2>
-            <p>Listen, I've had a pretty messed up day...</p>
+            <h2>{{message.autor}}</h2>
+            <p>{{message.conteudo}}</p>
         </ion-label>
       </ion-item>
     </ion-list>
@@ -35,15 +35,15 @@
 
     <ion-item>
       <ion-label position="floating">Nome:</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="message.autor"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Comentário</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea [(ngModel)]="message.conteudo"></ion-textarea>
     </ion-item>
 
-    <ion-button expand="full" shape="round" color="medium">Publicar</ion-button>
+    <ion-button expand="full" shape="round" color="medium" (click)="comentar()">Publicar</ion-button>
 
   </div>
 </ion-content>
