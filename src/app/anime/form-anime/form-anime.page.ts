@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Router } from '@angular/router';
 
 import { Anime } from '../../model/anime';
 
@@ -12,7 +13,7 @@ export class FormAnimePage implements OnInit {
 
   anime: Anime = new Anime();
 
-  constructor(private fire: AngularFireDatabase) { }
+  constructor(private fire: AngularFireDatabase, private rota: Router) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,7 @@ export class FormAnimePage implements OnInit {
   salvar() : void{
     this.fire.list('anime').push(this.anime);
     this.anime = new Anime();
+    this.rota.navigate(['list-anime']);
   }
 
 }
