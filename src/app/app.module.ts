@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
        messagingSenderId: "437504453400",
        appId: "1:437504453400:web:6423880c3c7744bb"
      }),
-     AngularFireDatabaseModule
+     AngularFireDatabaseModule,
+     AngularFireAuthModule
   ],
   providers: [
     StatusBar,

@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class HomePage {
 
   constructor() {}
-
+  //https://angular-templates.io/tutorials/about/firebase-authentication-with-angular
 }
