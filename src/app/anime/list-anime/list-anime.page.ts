@@ -23,4 +23,9 @@ export class ListAnimePage implements OnInit {
   ngOnInit() {
   }
 
+  excluir(key: string, anime: Anime){
+    this.fire.object('anime/'+key).remove();
+    this.fire.object('message/'+key).remove();
+  }
+
 }
