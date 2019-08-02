@@ -30,4 +30,10 @@ export class LoginPage implements OnInit {
     this.router.navigate(['login']);
   }
 
+  redefinePwd(): void{
+    this.authService.auth.sendPasswordResetEmail(this.usuario.email)
+      .then( (res) => alert('Email enviado!'))
+      .catch( (err) => console.log(err));
+  }
+
 }
