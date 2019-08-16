@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from "angularfire2/auth";
+import { Router } from '@angular/router';
 
 import { Anime } from '../../model/anime';
 import { Message } from '../../model/message';
@@ -20,9 +22,26 @@ export class ViewAnimePage implements OnInit {
   message: Message = new Message();
   listMessage: Observable<Message[]>;
 
-  constructor(private route: ActivatedRoute, private fire: AngularFireDatabase) { }
+  constructor(private route: ActivatedRoute, 
+    private fire: AngularFireDatabase,
+    private rota: Router,
+    private authService: AngularFireAuth) { }
 
   ngOnInit() {
+
+    this.authService.authState.subscribe( (user) => {
+      if(user){
+        if(user.displayName){
+          this.message.autor = user.displayName;
+        }else{
+          this.message.autor = user.email;
+        }
+        this.message.user_id = user.uid;
+      }else{
+        this.rota.navigate(['login']);
+      }
+    });
+
     this.route.queryParams.subscribe( params => {
       if(params['key']){
         this.key = params['key'];

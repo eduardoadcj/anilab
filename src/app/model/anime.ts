@@ -3,4 +3,5 @@ export class Anime{
   sinopse: string;
   autor: string;
   demografia: string;
+  user_id: string;
 }

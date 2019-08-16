@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import { AngularFireAuth } from "angularfire2/auth";
 import { Anime } from '../../model/anime';
 
 @Component({
@@ -18,9 +18,24 @@ export class FormAnimePage implements OnInit {
 
   constructor(private fire: AngularFireDatabase,
      private rota: Router,
-     private route: ActivatedRoute) { }
+     private route: ActivatedRoute,
+     private authService: AngularFireAuth) { }
 
   ngOnInit() {
+    
+    this.authService.authState.subscribe( (user) => {
+      if(user){
+        if(user.displayName){
+          this.anime.autor = user.displayName;
+        }else{
+          this.anime.autor = user.email;
+        }
+        this.anime.user_id = user.uid;
+      }else{
+        this.rota.navigate(['login']);
+      }
+    });
+    
     this.route.queryParams.subscribe( params => {
       if(params['key']){
         this.key = params['key'];
@@ -29,6 +44,7 @@ export class FormAnimePage implements OnInit {
           .subscribe(value => this.anime = value);
       }
     });
+  
   }
 
   salvar() : void{
@@ -41,6 +57,7 @@ export class FormAnimePage implements OnInit {
 
     this.anime = new Anime();
     this.rota.navigate(['list-anime']);
+
   }
 
 }

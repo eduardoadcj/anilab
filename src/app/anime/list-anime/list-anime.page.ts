@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from "angularfire2/auth";
 
 import { Anime } from '../../model/anime';
 
@@ -12,12 +13,18 @@ import { Anime } from '../../model/anime';
 })
 export class ListAnimePage implements OnInit {
 
+  user_id: Observable<string>;
   listAnime: Observable<Anime[]>;
 
-  constructor(private fire: AngularFireDatabase) {
+  constructor(private fire: AngularFireDatabase,
+     private authService: AngularFireAuth) {
+
     this.listAnime = this.fire.list<Anime>('anime').snapshotChanges().pipe(
       map( lista => lista.map( linha => ({key: linha.payload.key, ... linha.payload.val() }) ) )
     );
+
+    this.user_id = this.authService.authState.pipe(map(user => user.uid));
+  
   }
 
   ngOnInit() {
