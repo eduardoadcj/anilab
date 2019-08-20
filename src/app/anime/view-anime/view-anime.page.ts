@@ -54,8 +54,15 @@ export class ViewAnimePage implements OnInit {
   }
 
   comentar(){
-    this.fire.list('message/'+this.key).push(this.message);
-    this.message = new Message();
+    if(this.message.conteudo){
+
+      if(!this.message.autor)
+        this.message.autor = "Anônimo";
+
+      this.fire.list('message/'+this.key).push(this.message);
+      this.message = new Message();
+      
+    }
   }
 
 }
