@@ -21,8 +21,7 @@ export class LoginPage implements OnInit {
 
   login(): void {
 
-    if (this.usuario.email && this.usuario.senha) {
-      this.error = "";
+    if (this.validForm()) {
       
       this.authService.auth.signInWithEmailAndPassword(this.usuario.email,
         this.usuario.senha)
@@ -34,8 +33,6 @@ export class LoginPage implements OnInit {
           console.log(erro);
         });
 
-    } else {
-      this.error = "Preencha todos os campos!";
     }
 
   }
@@ -49,6 +46,32 @@ export class LoginPage implements OnInit {
     this.authService.auth.sendPasswordResetEmail(this.usuario.email)
       .then((res) => alert('Email enviado!'))
       .catch((err) => console.log(err));
+  }
+
+  createUser(): void{
+    if(this.validForm()){
+
+      this.authService.auth.createUserWithEmailAndPassword(this.usuario.email,
+         this.usuario.senha)
+         .then( (res) => {
+            this.error="";
+            this.router.navigate(['home']);
+         }).catch((erro) => {
+            this.error="Credenciais inválidas!";
+            console.log(erro);
+         });
+
+    }
+  }
+
+  validForm(): Boolean{
+    if (this.usuario.email && this.usuario.senha) {
+      this.error = "";
+      return true;
+    } else {
+      this.error = "Preencha todos os campos!";
+      return false;
+    }
   }
 
 }
