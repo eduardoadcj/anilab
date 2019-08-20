@@ -35,6 +35,10 @@
     <ion-textarea [(ngModel)]="anime.sinopse"></ion-textarea>
   </ion-item>
 
+  <div class="ion-padding">
+    <ion-label color="danger" position="floating">{{error}}</ion-label>
+  </div>
+
   <ion-button expand="full" shape="round" color="medium" (click)="salvar()">Adicionar</ion-button>
 
 </ion-content>
