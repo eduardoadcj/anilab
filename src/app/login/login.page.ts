@@ -43,9 +43,14 @@ export class LoginPage implements OnInit {
   }
 
   redefinePwd(): void {
-    this.authService.auth.sendPasswordResetEmail(this.usuario.email)
+    if(this.usuario.email){
+      this.error="";
+      this.authService.auth.sendPasswordResetEmail(this.usuario.email)
       .then((res) => alert('Email enviado!'))
       .catch((err) => console.log(err));
+    }else{
+      this.error="Preencha o campo email!";
+    }
   }
 
   createUser(): void{
