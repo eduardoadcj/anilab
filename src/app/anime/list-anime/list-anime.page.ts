@@ -35,4 +35,7 @@ export class ListAnimePage implements OnInit {
     this.fire.object('message/'+key).remove();
   }
 
+  // Consulta
+  // db.list('/items', ref => ref.orderByChild('size').equalTo('large'))
+
 }
