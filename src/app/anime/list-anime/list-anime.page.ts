@@ -37,5 +37,6 @@ export class ListAnimePage implements OnInit {
 
   // Consulta
   // db.list('/items', ref => ref.orderByChild('size').equalTo('large'))
+  // https://www.joshmorony.com/high-performance-list-filtering-in-ionic-2/
 
 }
